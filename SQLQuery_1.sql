@@ -1,0 +1,8 @@
+SELECT IIF(v.USERNEV IS NULL, 'végösszeg', v.usernev),
+COUNT(DISTINCT SZALLAS_ID)
+FROM Vendeg v
+LEFT JOIN Foglalas f ON v.USERNEV = f.UGYFEL_FK
+lEFT JOIN Szoba sz ON f.SZOBA_FK = sz.SZOBA_ID
+LEFT JOIN Szallashely szh ON sz.SZALLAS_FK = szh.SZALLAS_ID
+GROUP BY Rollup (v.USERNEV)
+
